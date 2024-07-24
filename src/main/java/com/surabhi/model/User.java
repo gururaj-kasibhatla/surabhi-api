@@ -35,11 +35,11 @@ public class User {
 		this.password = password;
 	}
 
-	public UserRole getRole() {
+	public String getRole() {
 		return role;
 	}
 
-	public void setRole(UserRole role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 
@@ -49,9 +49,9 @@ public class User {
     @Column(nullable = false)
     private String password;
     
-    @Enumerated(EnumType.STRING)
+//    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private UserRole role;
+    private String role;
     
     // Getters and setters
     
