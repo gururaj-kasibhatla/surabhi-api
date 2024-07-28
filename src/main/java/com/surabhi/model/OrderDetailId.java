@@ -1,37 +1,55 @@
 package com.surabhi.model;
 
+import jakarta.persistence.Embeddable;
 import java.io.Serializable;
-
-import jakarta.persistence.*;
+import java.util.Objects;
 
 @Embeddable
 public class OrderDetailId implements Serializable {
-    
-    @Column(name = "order_id")
+
     private Long orderId;
-    
-    @Column(name = "item_id")
     private Long itemId;
 
-	public Long getOrderId() {
-		return orderId;
-	}
+    // Default constructor
+    public OrderDetailId() {}
 
-	public void setOrderId(Long orderId) {
-		this.orderId = orderId;
-	}
+    // Parameterized constructor
+    public OrderDetailId(Long orderId, Long itemId) {
+        this.orderId = orderId;
+        this.itemId = itemId;
+    }
 
-	public Long getItemId() {
-		return itemId;
-	}
+    // Getters and Setters
 
-	public void setItemId(Long itemId) {
-		this.itemId = itemId;
-	}
-    
-    // Getters and setters
-    
-    // Constructors
-    
-    // equals, hashCode methods (based on orderId and itemId)
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public Long getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    // Override equals and hashCode
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof OrderDetailId)) return false;
+        OrderDetailId that = (OrderDetailId) o;
+        return Objects.equals(getOrderId(), that.getOrderId()) &&
+               Objects.equals(getItemId(), that.getItemId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getOrderId(), getItemId());
+    }
 }

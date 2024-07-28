@@ -9,5 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
 	List<Order> findByOrderDateBetween(Date startDate, Date endDate);
-    // Additional methods if needed
+//	List<Order> findByUserId(Long userId);
 }

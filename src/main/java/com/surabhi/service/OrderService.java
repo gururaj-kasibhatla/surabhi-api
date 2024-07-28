@@ -1,6 +1,9 @@
 package com.surabhi.service;
 
 
+import com.surabhi.dto.OrderCreationResponseDTO;
+import com.surabhi.dto.OrderDTO;
+import com.surabhi.dto.OrderSummaryDTO;
 import com.surabhi.model.Order;
 
 import java.util.*;
@@ -8,11 +11,11 @@ import java.util.List;
 
 public interface OrderService {
     
-    Order createOrder(Order order);
+    OrderCreationResponseDTO createOrder(Order order) throws Exception;
     
     Order getOrderById(Long orderId);
     
-    List<Order> getAllOrders();
+    List<OrderSummaryDTO> getAllOrders();
     
     List<Order> getOrdersByUserId(Long userId);
     

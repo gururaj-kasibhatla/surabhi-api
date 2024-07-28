@@ -1,7 +1,5 @@
 package com.surabhi.model;
 
-
-
 import jakarta.persistence.*;
 
 @Entity
@@ -10,55 +8,51 @@ public class OrderDetail {
     
     @EmbeddedId
     private OrderDetailId id;
-    
+
     @ManyToOne
     @MapsId("orderId")
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "order_id", nullable = false)
     private Order order;
-    
+
     @ManyToOne
     @MapsId("itemId")
-    @JoinColumn(name = "item_id")
+    @JoinColumn(name = "item_id", nullable = false)
     private MenuItem menuItem;
-    
+
     @Column(nullable = false)
     private Integer quantity;
 
-	public OrderDetailId getId() {
-		return id;
-	}
+    // Getters and Setters
 
-	public void setId(OrderDetailId id) {
-		this.id = id;
-	}
+    public OrderDetailId getId() {
+        return id;
+    }
 
-	public Order getOrder() {
-		return order;
-	}
+    public void setId(OrderDetailId id) {
+        this.id = id;
+    }
 
-	public void setOrder(Order order) {
-		this.order = order;
-	}
+    public Order getOrder() {
+        return order;
+    }
 
-	public MenuItem getMenuItem() {
-		return menuItem;
-	}
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 
-	public void setMenuItem(MenuItem menuItem) {
-		this.menuItem = menuItem;
-	}
+    public MenuItem getMenuItem() {
+        return menuItem;
+    }
 
-	public Integer getQuantity() {
-		return quantity;
-	}
+    public void setMenuItem(MenuItem menuItem) {
+        this.menuItem = menuItem;
+    }
 
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
-    
-    // Getters and setters
-    
-    // Constructors
-    
-    // toString, hashCode, equals methods
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
 }

@@ -1,6 +1,8 @@
 package com.surabhi.controller;
 
 
+import com.surabhi.dto.OrderCreationResponseDTO;
+import com.surabhi.dto.OrderSummaryDTO;
 import com.surabhi.model.MenuItem;
 import com.surabhi.model.Order;
 import com.surabhi.service.MenuItemService;
@@ -64,8 +66,8 @@ public class AdminController {
     }
     
     @GetMapping("/orders")
-    public ResponseEntity<List<Order>> getAllOrders() {
-        List<Order> orders = orderService.getAllOrders();
+    public ResponseEntity<List<OrderSummaryDTO>> getAllOrders() {
+        List<OrderSummaryDTO> orders = orderService.getAllOrders();
         return new ResponseEntity<>(orders, HttpStatus.OK);
     }
     
@@ -80,6 +82,17 @@ public class AdminController {
                                                              @RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") Date endDate) {
         List<Order> orders = orderService.getOrdersBetweenDates(startDate, endDate);
         return new ResponseEntity<>(orders, HttpStatus.OK);
+    }
+    
+    @PostMapping("/orders")
+    public ResponseEntity<OrderCreationResponseDTO> createOrder(@RequestBody Order order) {
+        try {
+            OrderCreationResponseDTO createdOrder = orderService.createOrder(order);
+            return new ResponseEntity<>(createdOrder, HttpStatus.CREATED);
+        } catch (Exception e) {
+        	System.out.println("Exception "+e);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     
